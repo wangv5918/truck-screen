@@ -1,0 +1,245 @@
+// 转向架车间信息展示大屏 样式文件
+//基础样式修改
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background: url(../images/Bg.png) no-repeat;
+  background-size: 100% 100%;
+  //禁止选择文字
+  -webkit-user-select: none;
+}
+@font-face {
+  font-family: 'YouSheBiaoTiHei';
+  src: url(./font/YouSheBiaoTiHei.ttf);
+}
+// 顶部标题
+.topWrap {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url(../images/topTitleBg.png) no-repeat;
+  background-size: 100% 100%;
+  padding: 20px 0;
+  .topTitle {
+    width: 33%;
+    text-align: center;
+    font-size: 40px;
+    font-family: SourceHanSansCN-Bold, SourceHanSansCN;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 75px;
+    letter-spacing: 2px;
+    margin-top: -10px;
+    white-space: nowrap;
+    background: linear-gradient(180deg, #e6effa 0%, #8cb0dd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    //禁止选中
+    -webkit-user-select: none;
+  }
+  .subTitle {
+    width: 33%;
+    text-align: center;
+    font-size: 30px;
+    font-family: SourceHanSansCN-Bold, SourceHanSansCN;
+    font-weight: bold;
+    color: #d4dce1;
+    line-height: 54px;
+    margin-top: -10px;
+    //禁止选中
+    -webkit-user-select: none;
+  }
+}
+// 内容板块
+.contentWrap {
+  width: calc(100vw - 80px);
+  height: calc(100vh - 120px);
+  margin: auto;
+  background: url(../images/contentBorder.png) no-repeat;
+  background-size: 100% 100%;
+  padding: 0 40px 40px 40px;
+  box-sizing: border-box;
+  .currentTime {
+    width: 100%;
+    height: 28px;
+    text-align: center;
+    font-size: 20px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #ecf7ff;
+  }
+  .firstRow {
+    width: 100%;
+    height: calc(50% - 24px);
+    display: flex;
+    justify-content: space-between;
+    .WorkTodaySituation {
+      flex: 1;
+    }
+    .videoWrap {
+      flex: 2;
+      margin: 0 20px 0 25px;
+      .barVideoContent {
+        width: 100%;
+        height: calc(100% - 0px);
+        background: url(../images/barVideoBg.png) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        .videoIcon {
+          width: 146px;
+          height: 146px;
+          position: absolute;
+          //居中显示
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: url(../images/videoIcon.png) no-repeat;
+          background-size: 100% 100%;
+          opacity: 0.8;
+        }
+      }
+    }
+    .safeAndProduction {
+      flex: 1;
+      .safeBar {
+        width: 100%;
+        height: 50%;
+        .safeTitle {
+          font-size: 16px;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #d8efff;
+          line-height: 22px;
+          margin-top: 20px;
+          margin-left: 36px;
+        }
+        .safeNum {
+          width: 100%;
+          height: calc(100% - 40px);
+          margin-left: 36px;
+          display: flex;
+          align-items: center;
+          .safeNumItem {
+            width: 48px;
+            height: 64px;
+            line-height: 64px;
+            text-align: center;
+            background: url(../images/safeNumBg.png) no-repeat;
+            background-size: 100% 100%;
+            margin-right: 30px;
+            font-size: 59px;
+            font-family: YouSheBiaoTiHei;
+            color: #d8efff;
+          }
+          .safeUnit {
+            font-size: 26px;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: #d8efff;
+          }
+        }
+      }
+      .ProductionBar {
+        width: 100%;
+        height: calc(50% - 20px);
+        margin-top: 20px;
+        .ProductionWrap {
+          margin-left: 36px;
+          text-decoration: none;
+          list-style: none;
+          .ProductionItem {
+            font-size: 18px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #d8efff;
+            line-height: 30px;
+          }
+        }
+      }
+    }
+  }
+  .secondRow {
+    width: 100%;
+    height: calc(50% - 24px);
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    .RepairTimeStatistics {
+      flex: 1;
+      // background: url(../images/barBg.png) no-repeat;
+      // background-size: 100% 100%;
+    }
+    .maintenance {
+      flex: 2;
+      margin: 0 20px 0 25px;
+    }
+    .WorkSafetyWarning {
+      flex: 1;
+    }
+  }
+  .barBg {
+    background: url(../images/barTitleBg.png) no-repeat;
+    background-size: 100% 100%;
+    // opacity: 0.9;
+  }
+  .SafeBarBg {
+    background: url(../images/safeBarTitleBg.png) no-repeat;
+    background-size: 100% 100%;
+    // opacity: 0.9;
+  }
+  .barMaintenanceBg {
+    background: url(../images/maintenanceTitleBg.png) no-repeat;
+    background-size: 100% 100%;
+    // opacity: 0.9;
+  }
+  .barTitle {
+    width: 100%;
+    height: 55px;
+    text-indent: 48px;
+    line-height: 55px;
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #d8efff;
+    //禁止选中
+    -webkit-user-select: none;
+  }
+  .maintenanceTitle {
+    text-indent: 80px;
+  }
+  .barContent {
+    width: calc(100% - 0px);
+    height: calc(100% - 55px);
+    // background: url(../images/barBg.png) no-repeat;
+    // background-size: 100% 100%;
+    // opacity: 0.7;
+    // opacity: 0.8;
+  }
+  .safeBarContent {
+    width: calc(100% - 0px);
+    height: calc(100% - 20px);
+    // background: url(../images/barBg.png) no-repeat;
+    // background-size: 100% 100%;
+    // opacity: 0.7;
+    // opacity: 0.8;
+  }
+  .safeBarTitle {
+    width: 100%;
+    height: 20px;
+    text-indent: 48px;
+    line-height: 20px;
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #d8efff;
+    //禁止选中
+    -webkit-user-select: none;
+  }
+}

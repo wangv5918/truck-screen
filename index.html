@@ -1,0 +1,91 @@
+<!--
+ * @Description: 
+ * @Date: 2022-11-30 13:09:45
+ * @LastEditTime: 2022-11-30 17:45:09
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>转向架车间信息展示大屏</title>
+  <link rel="stylesheet" href="style/index.css">
+  <script src="./js/echarts.js"></script>
+</head>
+
+<body>
+  <!-- 顶部标题 -->
+  <div class="topWrap">
+    <div class="subTitle">做足功夫</div>
+    <div class="topTitle">
+      转向架车间信息展示大屏
+    </div>
+    <div class="subTitle">保架护航</div>
+  </div>
+  <!-- 内容板块 -->
+  <div class="contentWrap">
+    <!-- 当前时间 -->
+    <div class="currentTime">2021年10月22号 星期四 10:02:03</div>
+    <!-- FirstRow （今日上班情况、video、安全生产） -->
+    <div class="firstRow">
+      <!-- 今日上班情况 -->
+      <div class="WorkTodaySituation barBg">
+        <div class="barTitle">今日上班情况</div>
+        <div class="barContent" id="WorkTodaySituation"></div>
+      </div>
+      <!-- 视频video -->
+      <div class="videoWrap">
+        <div class="barVideoContent">
+          <div class="videoIcon"></div>
+        </div>
+      </div>
+      <!-- 安全生产天数及情况 -->
+      <div class="safeAndProduction">
+        <div class="safeBar SafeBarBg">
+          <div class="barTitle">安全生产天数</div>
+          <div class="barContent">
+            <div class="safeTitle">至今已安全生产：</div>
+            <div class="safeNum">
+              <div class="safeNumItem">1</div>
+              <div class="safeNumItem">3</div>
+              <div class="safeNumItem">6</div>
+              <div class="safeNumItem">1</div>
+              <div class="safeUnit">天</div>
+            </div>
+          </div>
+        </div>
+        <div class="ProductionBar SafeBarBg">
+          <div class="barTitle">生产情况反馈</div>
+          <div class="barContent">
+            <ul class="ProductionWrap">
+              <li class="ProductionItem">1、1234车1车2架螺纹孔缺陷。</li>
+              <li class="ProductionItem">2、1234车1车2架螺纹孔缺陷。</li>
+              <li class="ProductionItem">3、1452车4车3架加强筋干涉。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SecondRow （修时统计、检修节拍图、安全生产预警） -->
+    <div class="secondRow">
+      <!-- 修时统计 -->
+      <div class="RepairTimeStatistics barBg">
+        <div class="barTitle">修时统计</div>
+        <div class="barContent"></div>
+      </div>
+      <div class="maintenance barMaintenanceBg">
+        <div class="barTitle maintenanceTitle">检修节拍图</div>
+        <div class="barContent" id="barMaintenance"></div>
+      </div>
+      <div class="WorkSafetyWarning barBg">
+        <div class="barTitle">安全生产预警</div>
+        <div class="barContent"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./js/index.js"></script>
+
+</html>
