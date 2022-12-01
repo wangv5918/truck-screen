@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-11-30 13:12:23
- * @LastEditTime: 2022-12-01 13:46:41
+ * @LastEditTime: 2022-12-01 16:36:06
  */
 //页面加载完成后执行
 window.onload = function () {
@@ -120,6 +120,7 @@ window.onload = function () {
   };
   var barMaintenanceOption = {
     grid: {
+      right: "15%",
       lineStyle: {
         color: "#fff",
         width: 1,
@@ -177,39 +178,95 @@ window.onload = function () {
       max: 8, //坐标轴刻度最大值
       scale: true, //是否从0开始
     },
-    yAxis: {
-      type: "category", //坐标轴类型
-      inverse: true, //是否是反向坐标轴
-      axisLine: {
-        show: true, //是否显示坐标轴轴线
-        lineStyle: {
-          color: "#A8C1DE", //---默认取轴线的颜色
-          width: 2,
-          type: "solid",
+    yAxis: [
+      {
+        type: "category", //坐标轴类型
+        inverse: true, //是否是反向坐标轴
+        axisLine: {
+          show: true, //是否显示坐标轴轴线
+          lineStyle: {
+            color: "#A8C1DE", //---默认取轴线的颜色
+            width: 2,
+            type: "solid",
+          },
         },
+        axisLabel: {
+          color: "#fff",
+        },
+        name: "(车组号)", //坐标轴名称
+        nameLocation: "start", //坐标轴名称显示位置
+        nameTextStyle: {
+          width: 100,
+          align: "right",
+          verticalAlign: "top", //坐标轴名称的显示位置
+          color: "#5C6377", //坐标轴名称的颜色
+          fontSize: 12, //坐标轴名称的字体大小
+          lineHeight: 35, //坐标轴名称的行高
+        },
+        axisTick: {
+          show: false,
+        },
+        data: ["3057", "1026", "2053"], //车组号
       },
-      axisLabel: {
-        color: "#fff",
+      {
+        type: "category",
+        name: "（计划修竣日期）",
+        nameLocation: "end", //坐标轴名称显示位置
+        nameTextStyle: {
+          width: 50,
+          align: "right",
+          verticalAlign: "top", //坐标轴名称的显示位置
+          color: "#5C6377", //坐标轴名称的颜色
+          fontSize: 12, //坐标轴名称的字体大小
+          lineHeight: 35, //坐标轴名称的行高
+        },
+        position: "right",
+        // alignTicks: true,
+        offset: 120,
+        axisLine: {
+          show: false,
+        },
+        axisLabel: {
+          show: true,
+          inside: true,
+          margin: 20,
+        },
+        axisTick: {
+          show: false,
+        },
+        // data: ["10月10日", "10月10日"], //计划修竣日期
+        data: [
+          {
+            value: "10月10日",
+            textStyle: {
+              fontSize: 16,
+              fontFamily: "PingFangSC-Regular, PingFang SC",
+              color: "#50ECA9",
+            },
+          },
+          {
+            value: "10月10日",
+            textStyle: {
+              fontSize: 16,
+              fontFamily: "PingFangSC-Regular, PingFang SC",
+              color: "#F48484",
+            },
+          },
+          {
+            value: "10月10日",
+            textStyle: {
+              fontSize: 16,
+              fontFamily: "PingFangSC-Regular, PingFang SC",
+              color: "#F2C92D",
+            },
+          },
+        ], //计划修竣日期
       },
-      name: "(车组号)", //坐标轴名称
-      nameLocation: "start", //坐标轴名称显示位置
-      nameTextStyle: {
-        window: 100,
-        align: "right",
-        verticalAlign: "top", //坐标轴名称的显示位置
-        color: "#5C6377", //坐标轴名称的颜色
-        fontSize: 12, //坐标轴名称的字体大小
-        lineHeight: 35, //坐标轴名称的行高
-      },
-      axisTick: {
-        show: false,
-      },
-      data: ["10086", "10095"], //车组号
-    },
+    ],
     series: [
       {
         type: "bar",
-        data: [7, 1], //检修进度
+        data: [7, 1, 3], //检修进度
         itemStyle: {
           color: "#6C9CD9",
         },
