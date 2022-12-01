@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-12-01 13:53:23
- * @LastEditTime: 2022-12-01 15:53:31
+ * @LastEditTime: 2022-12-01 16:48:21
  */
 //动态效果
 //获取 class currentTime 元素，设置当前年月日时分秒（每秒更新）
@@ -93,14 +93,14 @@ function changeShow() {
 $(".RepairTimeStatistics #" + showList[showIndex]).toggleClass('hideBar');
 $(".RepairTimeStatistics #" + showList[showIndex]).toggleClass('animate__bounceInUp');
 //定时器
-timer = setInterval(changeShow, 5000);
+timer = setInterval(changeShow, 30000);
 //鼠标移入停止定时器
 $(".RepairTimeStatistics .barContent").on("mouseenter", function () {
   clearInterval(timer);
 });
 //鼠标移出开启定时器
 $(".RepairTimeStatistics .barContent").on("mouseleave", function () {
-  timer = setInterval(changeShow, 10000);
+  timer = setInterval(changeShow, 30000);
 });
 //销毁定时器
 window.onbeforeunload = function () {
