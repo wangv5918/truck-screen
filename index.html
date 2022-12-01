@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2022-11-30 13:09:45
- * @LastEditTime: 2022-11-30 17:45:09
+ * @LastEditTime: 2022-12-01 15:39:29
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +12,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>转向架车间信息展示大屏</title>
   <link rel="stylesheet" href="style/index.css">
+  <!-- 动画库 -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+  <!-- echarts -->
   <script src="./js/echarts.js"></script>
+  <!-- jquery  -->
+  <script src="./js/zepto.js"></script>
 </head>
 
 <body>
   <!-- 顶部标题 -->
-  <div class="topWrap">
+  <div class="topWrap animate__animated animate__bounce">
     <div class="subTitle">做足功夫</div>
     <div class="topTitle">
       转向架车间信息展示大屏
@@ -72,8 +80,25 @@
     <div class="secondRow">
       <!-- 修时统计 -->
       <div class="RepairTimeStatistics barBg">
-        <div class="barTitle">修时统计</div>
-        <div class="barContent"></div>
+        <div class="barTitle">2021、2022年三级修、四级修修时对比</div>
+        <!-- 修时对比 -->
+        <div class="barContent hideBar animate__animated " id="repairTimeContrastChart"></div>
+        <!-- 年度检修计划 -->
+        <div class="barContent yearRepairPlanWrap hideBar animate__animated " id="yearRepairPlan">
+          <div class="yearRepairPlanNumWrap">
+            <div class="yearRepairPlanNumItem firstYearRepairPlanNumItem">
+              <span class="yearRepairPlanNum">176</span>
+              <span class="yearRepairPlanTitle">检修计划</span>
+            </div>
+            <div class="yearRepairPlanNumItem">
+              <span class="yearRepairPlanNum">73</span>
+              <span class="yearRepairPlanTitle">检修进度</span>
+            </div>
+          </div>
+          <div class="yearRepairPlanChart" id="yearRepairPlanChart"></div>
+        </div>
+        <!-- 各车型修时 truckRepairTime -->
+        <div class="barContent hideBar animate__animated " id="truckRepairTimeChart"></div>
       </div>
       <div class="maintenance barMaintenanceBg">
         <div class="barTitle maintenanceTitle">检修节拍图</div>
@@ -81,11 +106,13 @@
       </div>
       <div class="WorkSafetyWarning barBg">
         <div class="barTitle">安全生产预警</div>
-        <div class="barContent"></div>
+        <div class="barContent WorkSafetyWarningContent">
+          负责落实标准化作业要求，提高动车组检修质量。负责配合开展动车组检修技术变更工作做好质量卡控。严格执行安全文明生产规定，做到 “工完、料尽、场地清”。
+        </div>
       </div>
     </div>
   </div>
 </body>
 <script src="./js/index.js"></script>
-
+<script src="./js/DomOperation.js"></script>
 </html>

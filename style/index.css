@@ -9,9 +9,10 @@ body {
   background: url(../images/Bg.png) no-repeat;
   background-size: 100% 100%;
   -webkit-user-select: none;
+  overflow: hidden;
 }
 @font-face {
-  font-family: 'YouSheBiaoTiHei';
+  font-family: "YouSheBiaoTiHei";
   src: url(font/YouSheBiaoTiHei.ttf);
 }
 .topWrap {
@@ -113,15 +114,12 @@ body {
   font-weight: 500;
   color: #d8efff;
   line-height: 22px;
-  margin-top: 20px;
-  margin-left: 36px;
 }
 .contentWrap .firstRow .safeAndProduction .safeBar .safeNum {
   width: 100%;
-  height: calc(100% - 40px);
-  margin-left: 36px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .contentWrap .firstRow .safeAndProduction .safeBar .safeNum .safeNumItem {
   width: 48px;
@@ -141,15 +139,23 @@ body {
   font-weight: 500;
   color: #d8efff;
 }
+.contentWrap .firstRow .safeAndProduction .safeBar .barContent {
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .contentWrap .firstRow .safeAndProduction .ProductionBar {
   width: 100%;
   height: calc(50% - 20px);
   margin-top: 20px;
 }
 .contentWrap .firstRow .safeAndProduction .ProductionBar .ProductionWrap {
-  margin-left: 36px;
   text-decoration: none;
   list-style: none;
+  padding: 20px;
+  box-sizing: border-box;
 }
 .contentWrap .firstRow .safeAndProduction .ProductionBar .ProductionWrap .ProductionItem {
   font-size: 18px;
@@ -167,6 +173,55 @@ body {
 }
 .contentWrap .secondRow .RepairTimeStatistics {
   flex: 1;
+  position: relative;
+}
+.contentWrap .secondRow .RepairTimeStatistics .yearRepairPlanWrap .yearRepairPlanNumWrap {
+  width: 100%;
+  height: 35%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.contentWrap .secondRow .RepairTimeStatistics .yearRepairPlanWrap .yearRepairPlanNumWrap .yearRepairPlanNumItem {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 22px;
+  font-family: SourceHanSansCN-Medium, SourceHanSansCN;
+  font-weight: 500;
+  color: #95c7eb;
+  background: url(../images/TextBorder.png) no-repeat;
+  background-size: 100% 100%;
+  background: #031d3d;
+  box-shadow: inset 0px 1px 8px 9px rgba(80, 182, 255, 0.2);
+  border: 1px solid #2c79bf;
+}
+.contentWrap .secondRow .RepairTimeStatistics .yearRepairPlanWrap .yearRepairPlanNumWrap .yearRepairPlanNumItem .yearRepairPlanNum {
+  font-size: 60px;
+  font-family: YouSheBiaoTiHei;
+  color: #ffffff;
+}
+.contentWrap .secondRow .RepairTimeStatistics .yearRepairPlanWrap .firstYearRepairPlanNumItem {
+  margin-right: 20px;
+}
+.contentWrap .secondRow .RepairTimeStatistics .yearRepairPlanChart {
+  width: 100%;
+  height: calc(100% - 35% - 20px);
+  margin-top: 20px;
+}
+.contentWrap .secondRow .RepairTimeStatistics #truckRepairTimeChart {
+  width: 100%;
+  height: 100%;
 }
 .contentWrap .secondRow .maintenance {
   flex: 2;
@@ -174,6 +229,18 @@ body {
 }
 .contentWrap .secondRow .WorkSafetyWarning {
   flex: 1;
+}
+.contentWrap .secondRow .WorkSafetyWarning .WorkSafetyWarningContent {
+  display: flex;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #d8efff;
+  text-indent: 2em;
 }
 .contentWrap .barBg {
   background: url(../images/barTitleBg.png) no-repeat;
@@ -219,4 +286,10 @@ body {
   font-weight: 400;
   color: #d8efff;
   -webkit-user-select: none;
+}
+.hideBar {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
