@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-11-30 13:12:23
- * @LastEditTime: 2022-12-01 16:36:06
+ * @LastEditTime: 2022-12-02 15:13:16
  */
 //页面加载完成后执行
 window.onload = function () {
@@ -47,7 +47,7 @@ window.onload = function () {
         left: "center",
         top: "45%",
         style: {
-          text: "683",
+          text: "649",
           textAlign: "center",
           fill: "#fff", //文字的颜色
           width: 30,
@@ -89,7 +89,9 @@ window.onload = function () {
               fontSize: 20,
               position: "inner",
               color: "#fff",
-              formatter: "{c}" + "%", //自定义显示内容
+              formatter: function(value) {
+                return value.percent + "%";
+              }, //自定义显示内容
             },
           },
         },
@@ -97,9 +99,9 @@ window.onload = function () {
           show: false,
         },
         data: [
-          { value: 52, name: "白班人数" },
-          { value: 31, name: "晚班人数" },
-          { value: 17, name: "未上班人数" },
+          { value: 327, name: "白班人数" },
+          { value: 150, name: "晚班人数" },
+          { value: 172, name: "未上班人数" },
         ],
       },
     ],
@@ -121,6 +123,7 @@ window.onload = function () {
   var barMaintenanceOption = {
     grid: {
       right: "15%",
+      bottom: "5%",
       lineStyle: {
         color: "#fff",
         width: 1,
@@ -133,7 +136,7 @@ window.onload = function () {
       // data: ["转向架拆卸", "构架清洗、打磨、补漆", "构架检修", "部件安装", "转向架落成", "静压载试验", "转向架完工", "转向架交检、交验"],
       position: "top",
       axisTick: {
-        show: true,
+        show: false,
         lineStyle: {
           color: "#fff", //---默认取轴线的颜色
           width: 1,
@@ -173,7 +176,7 @@ window.onload = function () {
         fontSize: 12, //坐标轴名称的字体大小
         lineHeight: 35, //坐标轴名称的行高
       },
-      offset: 10,
+      offset: 40, //坐标轴相对于默认位置的偏移
       min: 0, //坐标轴刻度最小值
       max: 8, //坐标轴刻度最大值
       scale: true, //是否从0开始
@@ -196,17 +199,18 @@ window.onload = function () {
         name: "(车组号)", //坐标轴名称
         nameLocation: "start", //坐标轴名称显示位置
         nameTextStyle: {
-          width: 100,
+          width: 50,
           align: "right",
           verticalAlign: "top", //坐标轴名称的显示位置
           color: "#5C6377", //坐标轴名称的颜色
           fontSize: 12, //坐标轴名称的字体大小
           lineHeight: 35, //坐标轴名称的行高
+          padding: [0, 10, 10, 0],
         },
         axisTick: {
           show: false,
         },
-        data: ["3057", "1026", "2053"], //车组号
+        data: ["3064", "2044", "3043", "5503", "2060", "5823"], //车组号
       },
       {
         type: "category",
@@ -234,30 +238,53 @@ window.onload = function () {
         axisTick: {
           show: false,
         },
-        // data: ["10月10日", "10月10日"], //计划修竣日期
         data: [
           {
-            value: "10月10日",
+            value: "11月26日",
             textStyle: {
               fontSize: 16,
               fontFamily: "PingFangSC-Regular, PingFang SC",
-              color: "#50ECA9",
+              color: "#50ECA9", //黄
             },
           },
           {
-            value: "10月10日",
+            value: "11月30日",
             textStyle: {
               fontSize: 16,
               fontFamily: "PingFangSC-Regular, PingFang SC",
-              color: "#F48484",
+              color: "#F48484", //橙
             },
           },
           {
-            value: "10月10日",
+            value: "12月5日",
             textStyle: {
               fontSize: 16,
               fontFamily: "PingFangSC-Regular, PingFang SC",
-              color: "#F2C92D",
+              color: "#F2C92D", //绿
+            },
+          },
+          {
+            value: "11月28日",
+            textStyle: {
+              fontSize: 16,
+              fontFamily: "PingFangSC-Regular, PingFang SC",
+              color: "#50ECA9", //黄
+            },
+          },
+          {
+            value: "12月9日",
+            textStyle: {
+              fontSize: 16,
+              fontFamily: "PingFangSC-Regular, PingFang SC",
+              color: "#F2C92D", //绿
+            },
+          },
+          {
+            value: "12月1日",
+            textStyle: {
+              fontSize: 16,
+              fontFamily: "PingFangSC-Regular, PingFang SC",
+              color: "#F2C92D", //绿
             },
           },
         ], //计划修竣日期
@@ -266,15 +293,146 @@ window.onload = function () {
     series: [
       {
         type: "bar",
-        data: [7, 1, 3], //检修进度
+        data: [4, 5, 3, 8, 3, 6], //检修进度
         itemStyle: {
           color: "#6C9CD9",
         },
-        barWidth: "32",
+        barWidth: "20",
       },
     ],
   };
   barMaintenance.setOption(barMaintenanceOption);
+  //车组过多，分两次渲染,30s
+  //第一组数据
+  let firstData = {
+    yAxisData: ["3064", "2044", "3043", "5503", "2060", "5823"], //车组号
+    seriesData: [4, 5, 3, 8, 3, 6], //检修进度
+    planData: [
+      {
+        value: "11月26日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#50ECA9", //黄
+        },
+      },
+      {
+        value: "11月30日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F48484", //橙
+        },
+      },
+      {
+        value: "12月5日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D", //绿
+        },
+      },
+      {
+        value: "11月28日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#50ECA9", //黄
+        },
+      },
+      {
+        value: "12月9日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D", //绿
+        },
+      },
+      {
+        value: "12月1日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D", //绿
+        },
+      },
+    ],
+  };
+  //第二组数据
+  let secondData = {
+    yAxisData: ["3028", "3012", "3005", "1052", "2040", "2080"], //车组号
+    seriesData: [3, 3, 2, 3, 1, 0], //检修进度
+    planData: [
+      {
+        value: "12月12日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F48484",
+        },
+      },
+      {
+        value: "12月20日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D",
+        },
+      },
+      {
+        value: "12月3日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D",
+        },
+      },
+      {
+        value: "12月6日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D",
+        },
+      },
+      {
+        value: "12月16日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D",
+        },
+      },
+      {
+        value: "12月17日",
+        textStyle: {
+          fontSize: 16,
+          fontFamily: "PingFangSC-Regular, PingFang SC",
+          color: "#F2C92D",
+        },
+      },
+    ],
+  };
+  //若数据过多,可分多次切换
+  //放置在数组里--》数据遍历
+  let dataList = [firstData, secondData];
+  let index = 0;
+  //30S 切换一次数据
+  let timer = setInterval(() => {
+    index++;
+    barMaintenanceOption.yAxis[0].data = dataList[index].yAxisData;
+    barMaintenanceOption.series[0].data = dataList[index].seriesData;
+    barMaintenanceOption.yAxis[1].data = dataList[index].planData;
+    barMaintenance.setOption(barMaintenanceOption);
+    //重置index
+    if (index == dataList.length - 1) {
+      index = -1;
+    }
+  }, 30000);
+  // 离开页面销毁定时器
+  window.onbeforeunload = function () {
+    clearInterval(timer);
+  };
   //年度检修计划 start
   var yearRepairPlanChart = echarts.init(
     document.getElementById("yearRepairPlanChart")
@@ -288,7 +446,7 @@ window.onload = function () {
       axisTick: {
         show: false,
       },
-      data: ["CRH1", "CRH3", "CR4400AF"],
+      data: ["CRH1", "CRH3", "CR400AF"],
     },
     yAxis: {
       type: "value",
@@ -336,7 +494,7 @@ window.onload = function () {
     },
     series: [
       {
-        data: [120, 200, 150],
+        data: [38, 41, 18],
         type: "bar",
         name: "三级修",
         itemStyle: {
@@ -348,7 +506,7 @@ window.onload = function () {
         barWidth: "15",
       },
       {
-        data: [150, 260, 90],
+        data: [16, 10, 26],
         type: "bar",
         name: "四级修",
         itemStyle: {
@@ -426,7 +584,7 @@ window.onload = function () {
         label: {
           show: true,
         },
-        data: [8],
+        data: [7.58],
       },
       {
         name: "CRH1B",
@@ -437,7 +595,7 @@ window.onload = function () {
         label: {
           show: true,
         },
-        data: [10],
+        data: [10.14],
       },
       {
         name: "CRH13C(唐车)",
@@ -448,10 +606,10 @@ window.onload = function () {
         label: {
           show: true,
         },
-        data: [9],
+        data: [9.5],
       },
       {
-        name: "CRH1308",
+        name: "CRH380B",
         type: "bar",
         label: {
           show: true,
@@ -459,7 +617,7 @@ window.onload = function () {
         itemStyle: {
           color: "#FEC207",
         },
-        data: [15],
+        data: [8.73],
       },
       {
         name: "CRH308L(长客)",
@@ -470,7 +628,7 @@ window.onload = function () {
         itemStyle: {
           color: "#5B9BD5",
         },
-        data: [14],
+        data: [10.5],
       },
       {
         name: "CR400AF",
@@ -481,7 +639,7 @@ window.onload = function () {
         itemStyle: {
           color: "#74B04D",
         },
-        data: [21],
+        data: [11.5],
       },
       {
         name: "CR400AF-A",
@@ -492,7 +650,7 @@ window.onload = function () {
         itemStyle: {
           color: "#284478",
         },
-        data: [21],
+        data: [12.75],
       },
       {
         name: "CRH1A-A",
@@ -503,7 +661,7 @@ window.onload = function () {
         itemStyle: {
           color: "#9F4910",
         },
-        data: [30],
+        data: [20.69],
       },
       {
         name: "CRH3C(四)",
@@ -514,7 +672,7 @@ window.onload = function () {
         itemStyle: {
           color: "#646464",
         },
-        data: [16],
+        data: [19.3],
       },
       {
         name: "CR400AF(四)",
@@ -525,7 +683,7 @@ window.onload = function () {
         itemStyle: {
           color: "#9A7402",
         },
-        data: [42],
+        data: [20.36],
       },
       {
         name: "CR400AF-A(四)",
@@ -536,7 +694,7 @@ window.onload = function () {
         itemStyle: {
           color: "#286092",
         },
-        data: [21],
+        data: [42.0],
       },
     ],
   };
@@ -613,7 +771,7 @@ window.onload = function () {
     },
     series: [
       {
-        data: [120, 200],
+        data: [12, 26],
         type: "bar",
         name: "2021年修时",
         itemStyle: {
@@ -622,10 +780,10 @@ window.onload = function () {
         label: {
           show: true,
         },
-        barWidth: "15",
+        barWidth: "26",
       },
       {
-        data: [150, 260],
+        data: [10, 21],
         type: "bar",
         name: "2022年修时",
         itemStyle: {
@@ -634,7 +792,7 @@ window.onload = function () {
         label: {
           show: true,
         },
-        barWidth: "15",
+        barWidth: "26",
       },
     ],
   };

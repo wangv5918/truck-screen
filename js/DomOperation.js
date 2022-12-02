@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-12-01 13:53:23
- * @LastEditTime: 2022-12-01 16:48:21
+ * @LastEditTime: 2022-12-02 15:09:00
  */
 //动态效果
 //获取 class currentTime 元素，设置当前年月日时分秒（每秒更新）
@@ -63,6 +63,8 @@ let chartList = [
   "yearRepairPlanChart",
   "truckRepairTimeChart",
 ];
+//修时标题 30s 切换
+let titleList = ['2021、2022年三级修、四级修修时对比','年度检修计划','2022年各车型修时'];
 //定义当前展示的索引
 let showIndex = 0;
 //定义定时器
@@ -73,6 +75,8 @@ function changeShow() {
   let currentShow = $(".RepairTimeStatistics #" + showList[showIndex]);
   //获取下一个要展示的元素
   let nextShow = $(".RepairTimeStatistics #" + showList[(showIndex + 1) % 3]);
+  //标题内容更改
+  $('.RepairTimeStatistics .barTitle').html(titleList[(showIndex + 1) % 3]);
   //当前元素隐藏、动画切换（保证下次重新加载动画）
   currentShow.toggleClass('hideBar');
   currentShow.toggleClass('animate__bounceInUp');
@@ -89,7 +93,8 @@ function changeShow() {
   //索引自增
   showIndex = (showIndex + 1) % 3;
 }
-//默认展示、默认添加动画库
+//默认展示、默认添加动画库、默认标题
+$('.RepairTimeStatistics .barTitle').html(titleList[showIndex]);
 $(".RepairTimeStatistics #" + showList[showIndex]).toggleClass('hideBar');
 $(".RepairTimeStatistics #" + showList[showIndex]).toggleClass('animate__bounceInUp');
 //定时器
