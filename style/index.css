@@ -128,7 +128,7 @@ body {
   text-align: center;
   background: url(../images/safeNumBg.png) no-repeat;
   background-size: 100% 100%;
-  margin-right: 10px;
+  margin-right: 30px;
   font-size: 59px;
   font-family: YouSheBiaoTiHei;
   color: #d8efff;
@@ -154,7 +154,7 @@ body {
 .contentWrap .firstRow .safeAndProduction .ProductionBar .ProductionWrap {
   text-decoration: none;
   list-style: none;
-  padding: 0 20px;
+  padding: 20px;
   box-sizing: border-box;
 }
 .contentWrap .firstRow .safeAndProduction .ProductionBar .ProductionWrap .ProductionItem {
