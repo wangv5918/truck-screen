@@ -53,8 +53,8 @@ body {
   -webkit-user-select: none;
 }
 .contentWrap {
-  width: calc(100vw - 80px);
-  height: calc(100vh - 120px);
+  width: calc(100% - 80px);
+  height: calc(100% - 120px);
   margin: auto;
   background: url(../images/contentBorder.png) no-repeat;
   background-size: 100% 100%;

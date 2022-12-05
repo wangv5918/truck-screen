@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2022-11-30 13:09:45
- * @LastEditTime: 2022-12-02 16:59:14
+ * @LastEditTime: 2022-12-05 09:17:05
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -110,6 +110,39 @@
     </div>
   </div>
 </body>
+<script>
+  //立即执行函数--屏幕适配
+  (function () {
+    var bodyStyle = document.createElement('style')
+    bodyStyle.innerHTML = 'body{width:1920px; height:1080px!important;}'
+    document.documentElement.firstElementChild.appendChild(bodyStyle)
+    function refreshScale() {
+      let docWidth = document.documentElement.clientWidth;
+      let docHeight = document.documentElement.clientHeight;
+      var designWidth = 1920,
+        designHeight = 1080,
+        widthRatio = docWidth / designWidth,
+        heightRatio = docHeight / designHeight;
+      document.body.style = `transform:scale(${widthRatio},${heightRatio});transform-origin:left top;`
+      // 应对浏览器全屏切换前后窗口因短暂滚动条问题出现未占满情况
+      setTimeout(function () {
+        var lateWidth = document.documentElement.clientWidth,
+          lateHeight = document.documentElement.clientHeight;
+        if (lateWidth === docWidth) return;
+        widthRatio = lateWidth / designWidth
+        heightRatio = lateHeight / designHeight
+        document.body.style = "transform:scale(" + widthRatio + "," + heightRatio + ");transform-origin:left top;"
+      }, 0)
+    }
+    refreshScale()
+    window.addEventListener("pageshow", function (e) {
+      if (e.persisted) { // 浏览器后退的时候重新计算
+        refreshScale()
+      }
+    }, false);
+    window.addEventListener("resize", refreshScale, false);
+  })(window)
+</script>
 <script src="./js/index.js"></script>
 <script src="./js/DomOperation.js"></script>
 
