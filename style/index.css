@@ -229,6 +229,13 @@ body {
 }
 .contentWrap .secondRow .WorkSafetyWarning {
   flex: 1;
+  position: relative;
+}
+.WorkSafetyWarning  .barTitle{
+  position: relative;
+}
+.WorkSafetyWarning  .hideBar{
+  top: 50px;
 }
 .contentWrap .secondRow .WorkSafetyWarning .WorkSafetyWarningContent {
   display: flex;

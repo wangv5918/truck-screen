@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2022-11-30 13:12:23
- * @LastEditTime: 2022-12-02 15:13:16
+ * @LastEditTime: 2022-12-12 13:24:46
  */
 //页面加载完成后执行
 window.onload = function () {
@@ -89,7 +89,7 @@ window.onload = function () {
               fontSize: 20,
               position: "inner",
               color: "#fff",
-              formatter: function(value) {
+              formatter: function (value) {
                 return value.percent + "%";
               }, //自定义显示内容
             },
@@ -797,6 +797,220 @@ window.onload = function () {
     ],
   };
   repairTimeContrastChart.setOption(repairTimeContrastOption);
+  //车组检修成本
+  //安全生产预警 与 车组检修成本 30s 切换一次
+  var CrewMaintenanceCostChart = echarts.init(
+    document.getElementById("CrewMaintenanceCostChart")
+  );
+  var CrewMaintenanceCostChartOption = {
+    xAxis: {
+      type: "category",
+      axisLabel: {
+        color: "#fff",
+        interval: 0,
+      },
+      axisTick: {
+        show: false,
+      },
+      data: ["CRH1A200", "CRH1A250", "CRH1A-A", "CRH1B", "CRH3C"],
+    },
+    yAxis: {
+      type: "value",
+      splitLine: {
+        show: true,
+        lineStyle: {
+          type: "dashed",
+          color: "#A8C1DE", //---默认取轴线的颜色
+        },
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        color: "#fff",
+      },
+    },
+    grid: {
+      top: "18%",
+      left: "5%",
+      right: "5%",
+      bottom: "5%",
+      containLabel: true,
+    },
+    legend: {
+      top: "5%",
+      right: "2%",
+      width: "60%",
+      itemWidth: 8,
+      itemHeight: 8,
+      data: [
+        {
+          name: "三级修定额",
+          textStyle: {
+            color: "#fff",
+          },
+        },
+        {
+          name: "三级修支出",
+          textStyle: {
+            color: "#fff",
+          },
+        },
+        {
+          name: "四级修定额",
+          textStyle: {
+            color: "#fff",
+          },
+        },
+        {
+          name: "四级修支出",
+          textStyle: {
+            color: "#fff",
+          },
+        },
+      ],
+    },
+    series: [
+      {
+        data: [175, 225, 255, 340, 325],
+        type: "bar",
+        name: "三级修定额",
+        itemStyle: {
+          color: "#87BBFF",
+        },
+        label: {
+          show: true,
+        },
+        barWidth: "6",
+      },
+      {
+        data: [125, 150, 175, 240, 230],
+        type: "bar",
+        name: "三级修支出",
+        itemStyle: {
+          color: "#3576CD",
+        },
+        label: {
+          show: true,
+        },
+        barWidth: "6",
+      },
+      {
+        data: [140, 160, 200, 225, 210],
+        type: "bar",
+        name: "四级修定额",
+        itemStyle: {
+          color: "#FC8035",
+        },
+        label: {
+          show: true,
+        },
+        barWidth: "6",
+      },
+      {
+        data: [140, 160, 200, 225, 210],
+        type: "bar",
+        name: "四级修支出",
+        itemStyle: {
+          color: "#D45000",
+        },
+        label: {
+          show: true,
+        },
+        barWidth: "6",
+      },
+    ],
+  };
+  CrewMaintenanceCostChart.setOption(CrewMaintenanceCostChartOption);
+  let showList = [
+    "WorkSafetyWarningText",
+    "CrewMaintenanceCostChart",
+    "CrewMaintenanceCostChart",
+  ];
+  let chartList = ["CrewMaintenanceCostChart"];
+  //修时标题 30s 切换
+  let titleList = ["安全生产预警", "车组检修成本", "车组检修成本"];
+  //定义当前展示的索引
+  let showIndex = 0;
+  //定义定时器
+  let CrewTimer = null;
+  //车组过多，分两次渲染,30s
+  //第一组数据
+  let CrewFirstData = {
+    xAxisData: ["CRH1A200", "CRH1A250", "CRH1A-A", "CRH1B", "CRH3C"], //车组检修成本
+    seriesData: [
+      [175, 225, 255, 340, 325],
+      [125, 150, 175, 240, 230],
+      [140, 160, 200, 225, 210],
+      [140, 160, 200, 225, 210],
+    ],
+  };
+  //第二组数据
+  let CrewSecondData = {
+    xAxisData: ["CRH1A200新", "CRH1A250新", "CRH1A-A新", "CRH1B新"], //车组检修成本
+    seriesData: [
+      [155, 205, 205, 300],
+      [105, 100, 105, 200],
+      [100, 100, 200, 205],
+      [100, 100, 200, 205],
+    ],
+  };
+  //若数据过多,可分多次切换
+  //放置在数组里--》数据遍历
+  let CrewDataList = [CrewFirstData, CrewSecondData];
+  function changeShow() {
+    //加载不同车组的数据
+    if (showIndex != 2) {
+      CrewMaintenanceCostChartOption.xAxis.data =CrewDataList[showIndex].xAxisData
+      CrewMaintenanceCostChartOption.series[0] =
+        CrewDataList[showIndex].seriesData[0];
+      CrewMaintenanceCostChartOption.series[1] =
+        CrewDataList[showIndex].seriesData[1];
+      CrewMaintenanceCostChartOption.series[2] =
+        CrewDataList[showIndex].seriesData[2];
+      CrewMaintenanceCostChartOption.series[3] =
+        CrewDataList[showIndex].seriesData[3];
+    }
+    CrewMaintenanceCostChart.setOption(CrewMaintenanceCostChartOption);
+    //获取当前展示的元素
+    let currentShow = $(".WorkSafetyWarning #" + showList[showIndex]);
+    //获取下一个要展示的元素
+    let nextShow = $(".WorkSafetyWarning #" + showList[(showIndex + 1) % 3]);
+    //标题内容更改
+    $(".WorkSafetyWarning .barTitle").html(titleList[(showIndex + 1) % 3]);
+    //当前元素隐藏、动画切换（保证下次重新加载动画）
+    if (showIndex != 1) {
+      currentShow.toggleClass("hideBar");
+      currentShow.toggleClass("animate__zoomInLeft");
+    }
+    //echart 重绘
+    for (let i = 0; i < chartList.length; i++) {
+      let chart = echarts.getInstanceByDom(
+        document.getElementById(chartList[i])
+      );
+      chart.resize();
+    }
+    //定时器 5秒更换数据
+    //下一个元素显示、动画切换（保证下次重新加载动画）
+    if (showIndex != 1) {
+      nextShow.toggleClass("hideBar");
+      nextShow.toggleClass("animate__zoomInLeft");
+    }
+    //索引自增
+    showIndex = (showIndex + 1) % 3;
+  }
+  //默认展示、默认添加动画库、默认标题
+  $(".WorkSafetyWarning .barTitle").html(titleList[showIndex]);
+  $(".WorkSafetyWarning #" + showList[showIndex]).toggleClass("hideBar");
+  $(".WorkSafetyWarning #" + showList[showIndex]).toggleClass(
+    "animate__zoomInLeft"
+  );
+  //定时器
+  CrewTimer = setInterval(changeShow, 30000);
+  //销毁定时器
+  window.onbeforeunload = function () {
+    clearTimeout(CrewTimer);
+  };
   //页面resize时，重置图表大小
   window.onresize = function () {
     WorkTodaySituation.resize();
@@ -804,5 +1018,6 @@ window.onload = function () {
     yearRepairPlanChart.resize();
     truckRepairTimeChart.resize();
     repairTimeContrastChart.resize();
+    CrewMaintenanceCostChart.resize();
   };
 };
