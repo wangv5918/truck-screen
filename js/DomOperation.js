@@ -1,9 +1,9 @@
 /*
  * @Description:
  * @Date: 2022-12-01 13:53:23
- * @LastEditTime: 2022-12-02 15:09:00
+ * @LastEditTime: 2023-06-29 14:03:54
  */
-//动态效果
+//动态效果测试
 //获取 class currentTime 元素，设置当前年月日时分秒（每秒更新）
 function showTime() {
   var date = new Date();
